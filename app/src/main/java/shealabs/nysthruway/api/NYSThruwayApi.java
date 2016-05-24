@@ -1,10 +1,11 @@
 package shealabs.nysthruway.api;
 
 import retrofit2.http.GET;
+import rx.Observable;
 import shealabs.nysthruway.datamodel.TrafficEvents;
 
-interface NYSThruwayApi {
+public interface NYSThruwayApi {
 
-    @GET("events")
-    TrafficEvents getTrafficEvents();
+    @GET("events.xml")
+    Observable<TrafficEvents> getTrafficEvents();
 }

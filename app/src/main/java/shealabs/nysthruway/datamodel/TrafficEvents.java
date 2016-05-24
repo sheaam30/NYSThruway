@@ -1,62 +1,63 @@
 package shealabs.nysthruway.datamodel;
 
+
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementArray;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Root(name = "events")
 public class TrafficEvents {
 
     @Element(name = "lastupdatetime")
-    private Date lastUpdateTime;
+    private String lastUpdateTime;
 
-    @ElementArray(name = "event")
+    @ElementList(entry = "event", inline = true)
     private List<Event> eventList;
 
     @Root(name = "event")
     static class Event {
 
-        @Element(name = "expirationdatetime")
-        private Date expirationDateTime;
+        @Attribute(name = "category")
+        private String category;
 
-        @Element(name = "eventdesc")
-        private String eventDesc;
-
-        @Element(name = "direction")
-        private String direction;
-
-        @Element(name = "region")
-        private String region;
-
-        @Element(name = "route")
-        private String route;
-
-        @Element(name = "milepost")
-        private double milePost;
-
-        @Element(name = "longitude")
-        private float longitude;
-
-        @Element(name = "latitude")
-        private float latitude;
-
-        @Element(name = "eventtype")
-        private String eventType;
-
-        @Element(name = "orgid")
-        private String orgId;
-
-        @Element(name = "updatetime")
-        private String updateTime;
-
-        @Element(name = "eventid")
+        @Attribute(name = "eventid")
         private String eventId;
 
-        @Element(name = "category")
-        private String category;
-    }
+        @Attribute(name = "updatetime")
+        private String updateTime;
 
+        @Attribute(name = "orgid")
+        private String orgId;
+
+        @Attribute(name = "eventtype")
+        private String eventType;
+
+        @Attribute(name = "latitude")
+        private float latitude;
+
+        @Attribute(name = "longitude")
+        private float longitude;
+
+        @Attribute(name = "milepost")
+        private double milePost;
+
+        @Attribute(name = "route")
+        private String route;
+
+        @Attribute(name = "region")
+        private String region;
+
+        @Attribute(name = "direction")
+        private String direction;
+
+        @Attribute(name = "eventdesc")
+        private String eventDesc;
+
+        @Attribute(name = "expirationdatetime")
+        private String expirationDateTime;
+    }
 }
