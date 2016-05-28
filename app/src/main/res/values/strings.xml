@@ -2,4 +2,5 @@
     <string name="app_name">NYSThruway</string>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key">AIzaSyBeKRu4YHYdcxgeVAGPaO1lYQO80Cb8qNo</string>
+    <string name="filter">Filter</string>
 </resources>

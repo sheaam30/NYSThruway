@@ -1,5 +1,8 @@
 package shealabs.nysthruway.activity;
 
+import android.support.annotation.IdRes;
+import android.view.View;
+
 import shealabs.nysthruway.R;
 import shealabs.nysthruway.api.ApiProvider;
 import shealabs.nysthruway.mvp.model.BaseModel;
