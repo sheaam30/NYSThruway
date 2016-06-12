@@ -5,20 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:animateLayoutChanges="true">
 
-    <shealabs.nysthruway.widget.MapDragLayout
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/map_container">
-
-        <fragment
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"/>
-
-    </shealabs.nysthruway.widget.MapDragLayout>
-
+        android:id="@+id/map"
+        android:name="shealabs.nysthruway.widget.NYMapFragment"/>
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

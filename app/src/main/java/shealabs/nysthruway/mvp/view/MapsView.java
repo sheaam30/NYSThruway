@@ -83,12 +83,10 @@ public class MapsView extends BaseView implements OnMapReadyCallback {
     }
 
     public void hideViews() {
-        toolbar.setVisibility(View.INVISIBLE);
         fab.setVisibility(View.INVISIBLE);
     }
 
     public void showViews() {
-        toolbar.setVisibility(View.VISIBLE);
         fab.setVisibility(View.VISIBLE);
     }
 
