@@ -27,7 +27,7 @@ public class MapsPresenter extends BasePresenter<MapsModel, MapsView> {
 
     @Subscribe
     public void onTrafficEventsReceived(TrafficEventNext eventNext) {
-        Timber.i("Next");
+        view.updateMap(model.getTrafficEvents());
     }
 
     @Subscribe

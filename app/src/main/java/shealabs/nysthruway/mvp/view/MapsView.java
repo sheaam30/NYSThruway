@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,6 +22,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import shealabs.nysthruway.R;
 import shealabs.nysthruway.activity.MapsActivity;
+import shealabs.nysthruway.datamodel.data.TrafficEvents;
+import shealabs.nysthruway.datamodel.response.TrafficEventsResponse;
 
 public class MapsView extends BaseView implements OnMapReadyCallback {
 
@@ -65,10 +68,9 @@ public class MapsView extends BaseView implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        this.googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng latLng = new LatLng(43.10256956, -76.22142496);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 6);
+        this.googleMap.animateCamera(cameraUpdate);
         this.googleMap.getUiSettings().setCompassEnabled(false);
         this.googleMap.getUiSettings().setMapToolbarEnabled(false);
         this.googleMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -93,6 +95,14 @@ public class MapsView extends BaseView implements OnMapReadyCallback {
     @OnClick(R.id.fab)
     public void onListButtonClicked(View view) {
         Snackbar.make(view, "TODO: Switch to list Activity", Snackbar.LENGTH_SHORT).show();
+    }
+
+    public void updateMap(TrafficEvents trafficEvents) {
+        int size = trafficEvents.getEventList().size();
+        for (int i = 0; i < size; i++) {
+            TrafficEvents.Event event = trafficEvents.getEventList().get(i);
+            googleMap.addMarker(new MarkerOptions().position(event.getLatLng()));
+        }
     }
 
     public static final class StartMovingMapCameraEvent { }

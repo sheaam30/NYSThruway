@@ -33,13 +33,12 @@ public class MapDragLayout extends FrameLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                EventBus.getDefault().post(new MapsView.StartMovingMapCameraEvent());
-                break;
-
             case MotionEvent.ACTION_UP:
                 EventBus.getDefault().post(new MapsView.StoppedMovingMapCameraEvent());
                 break;
+
+            case MotionEvent.ACTION_MOVE:
+                EventBus.getDefault().post(new MapsView.StartMovingMapCameraEvent());
         }
         return super.dispatchTouchEvent(event);
     }
