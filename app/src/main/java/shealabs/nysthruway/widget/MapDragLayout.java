@@ -7,10 +7,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
-import org.greenrobot.eventbus.EventBus;
-
-import shealabs.nysthruway.mvp.view.MapsView;
-
 public class MapDragLayout extends FrameLayout {
 
     public MapDragLayout(Context context) {
@@ -32,14 +28,6 @@ public class MapDragLayout extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_UP:
-                EventBus.getDefault().post(new MapsView.StoppedMovingMapCameraEvent());
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-                EventBus.getDefault().post(new MapsView.StartMovingMapCameraEvent());
-        }
         return super.dispatchTouchEvent(event);
     }
 }

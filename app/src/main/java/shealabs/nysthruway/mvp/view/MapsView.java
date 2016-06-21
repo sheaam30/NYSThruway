@@ -1,5 +1,7 @@
 package shealabs.nysthruway.mvp.view;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,16 +16,18 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import shealabs.nysthruway.R;
 import shealabs.nysthruway.activity.MapsActivity;
 import shealabs.nysthruway.datamodel.data.TrafficEvents;
-import shealabs.nysthruway.datamodel.response.TrafficEventsResponse;
 
 public class MapsView extends BaseView implements OnMapReadyCallback {
 
@@ -77,19 +81,11 @@ public class MapsView extends BaseView implements OnMapReadyCallback {
         this.googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                EventBus.getDefault().post(new MarkerClickedEvent(marker));
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                return false;
+                return true;
             }
         });
-
-    }
-
-    public void hideViews() {
-        fab.setVisibility(View.INVISIBLE);
-    }
-
-    public void showViews() {
-        fab.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.fab)
@@ -99,12 +95,33 @@ public class MapsView extends BaseView implements OnMapReadyCallback {
 
     public void updateMap(TrafficEvents trafficEvents) {
         int size = trafficEvents.getEventList().size();
+        Bitmap trafficBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.traffic_event);
+        Bitmap trafficEventIcon = Bitmap.createScaledBitmap(trafficBitmap,
+                (int) getResources().getDimension(R.dimen.icon_width),
+                (int) getResources().getDimension(R.dimen.icon_height),
+                false);
+
         for (int i = 0; i < size; i++) {
             TrafficEvents.Event event = trafficEvents.getEventList().get(i);
-            googleMap.addMarker(new MarkerOptions().position(event.getLatLng()));
+            googleMap.addMarker(new MarkerOptions()
+                    .position(event.getLatLng())
+                    .title(event.getEventType())
+                    .icon(BitmapDescriptorFactory.fromBitmap(trafficEventIcon))
+                    .snippet(event.getEventDesc()));
         }
+        trafficBitmap.recycle();
+        trafficEventIcon.recycle();
     }
 
-    public static final class StartMovingMapCameraEvent { }
-    public static final class StoppedMovingMapCameraEvent { }
+    public void showBottomSheet(MarkerClickedEvent markerClickedEvent) {
+
+    }
+
+    public static class MarkerClickedEvent {
+        public final Marker marker;
+
+        public MarkerClickedEvent(Marker marker) {
+            this.marker = marker;
+        }
+    }
 }

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="toolbar_height">48dp</dimen>
+    <dimen name="icon_height">24dp</dimen>
+    <dimen name="icon_width">24dp</dimen>
+    <dimen name="sheet_height">250dp</dimen>
 </resources>

@@ -7,13 +7,14 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrafficEvents {
 
     private String lastUpdateTime;
 
-    private List<Event> eventList;
+    private List<Event> eventList = new ArrayList<>();
 
     public List<Event> getEventList() {
         return eventList;

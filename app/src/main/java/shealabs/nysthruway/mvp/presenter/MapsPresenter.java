@@ -7,10 +7,8 @@ import shealabs.nysthruway.mvp.model.MapsModel;
 import shealabs.nysthruway.mvp.model.MapsModel.TrafficEventError;
 import shealabs.nysthruway.mvp.model.MapsModel.TrafficEventNext;
 import shealabs.nysthruway.mvp.view.MapsView;
-import shealabs.nysthruway.mvp.view.MapsView.StartMovingMapCameraEvent;
+import shealabs.nysthruway.mvp.view.MapsView.MarkerClickedEvent;
 import timber.log.Timber;
-
-import static shealabs.nysthruway.mvp.view.MapsView.*;
 
 public class MapsPresenter extends BasePresenter<MapsModel, MapsView> {
 
@@ -36,12 +34,7 @@ public class MapsPresenter extends BasePresenter<MapsModel, MapsView> {
     }
 
     @Subscribe
-    public void onStartMovingMapCameraEvent(StartMovingMapCameraEvent event) {
-        view.hideViews();
-    }
-
-    @Subscribe
-    public void onStopMovingMapCameraEvent(StoppedMovingMapCameraEvent event) {
-        view.showViews();
+    public void onMarkerClickedEvent(MarkerClickedEvent markerClickedEvent) {
+        view.showBottomSheet(markerClickedEvent);
     }
 }
