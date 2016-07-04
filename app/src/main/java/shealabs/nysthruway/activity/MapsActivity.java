@@ -1,5 +1,6 @@
 package shealabs.nysthruway.activity;
 
+
 import shealabs.nysthruway.R;
 import shealabs.nysthruway.api.ApiProvider;
 import shealabs.nysthruway.mvp.model.BaseModel;

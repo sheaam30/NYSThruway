@@ -1,8 +1,5 @@
 package shealabs.nysthruway.mvp.presenter;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import shealabs.nysthruway.mvp.model.BaseModel;
 import shealabs.nysthruway.mvp.view.BaseView;
 

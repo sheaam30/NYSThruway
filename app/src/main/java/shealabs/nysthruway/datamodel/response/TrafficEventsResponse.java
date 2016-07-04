@@ -1,4 +1,4 @@
-package shealabs.nysthruway.datamodel;
+package shealabs.nysthruway.datamodel.response;
 
 
 import org.simpleframework.xml.Attribute;
@@ -10,54 +10,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Root(name = "events")
-public class TrafficEvents {
+public class TrafficEventsResponse {
 
     @Element(name = "lastupdatetime")
-    private String lastUpdateTime;
+    public String lastUpdateTime;
 
     @ElementList(entry = "event", inline = true)
-    private List<Event> eventList;
+    public List<Event> eventList;
 
     @Root(name = "event")
-    static class Event {
+    public static class Event {
 
         @Attribute(name = "category")
-        private String category;
+        public String category;
 
         @Attribute(name = "eventid")
-        private String eventId;
+        public String eventId;
 
         @Attribute(name = "updatetime")
-        private String updateTime;
+        public String updateTime;
 
         @Attribute(name = "orgid")
-        private String orgId;
+        public String orgId;
 
         @Attribute(name = "eventtype")
-        private String eventType;
+        public String eventType;
 
         @Attribute(name = "latitude")
-        private float latitude;
+        public float latitude;
 
         @Attribute(name = "longitude")
-        private float longitude;
+        public float longitude;
 
         @Attribute(name = "milepost")
-        private double milePost;
+        public double milePost;
 
         @Attribute(name = "route")
-        private String route;
+        public String route;
 
         @Attribute(name = "region")
-        private String region;
+        public String region;
 
         @Attribute(name = "direction")
-        private String direction;
+        public String direction;
 
         @Attribute(name = "eventdesc")
-        private String eventDesc;
+        public String eventDesc;
 
         @Attribute(name = "expirationdatetime")
-        private String expirationDateTime;
+        public String expirationDateTime;
     }
 }
